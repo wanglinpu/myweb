@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		input {
+			width: 160px;
+			height: 18px;
+			top:10px;
+		}
+		th {
+			width: 100px;
+			height: 30px;
+		}
+		tr,td {
+			width: 100px;
+			height: 30px;
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+	请输入姓名:<input type="text"><br>;
+	请输入邮箱:<input type="text"><br>;
+	请输入手机:<input type="text"><br>;
+	请输入地址:<input type="text"><br>;
+	<button id="btn">添加</button>
+	<div id="box"></div>
+	<script>
+	var btn = document.getElementById('btn');
+	
+	var ipts = document.getElementsByTagName('input');
+	var heads = ["姓名", "邮箱", "手机", "地址"]
+	var arr = [{"name": "小黑", "youxiang": "xiaohei@126.com", "shouji": 19999009090, "from": "北京"},
+			{"name": "小白","youxiang" : "xiaohei@126.com","shouji" : 19999009090,"from" : "上海"}
+	];
+	//创建封装函数
+	function cre(tagName,textear) {
+      var ele = document.createElement(tagName);
+      textear.appendChild(ele);
+      return ele;
+
+    }
+    var box = document.getElementById('box');
+	var table = cre('table',box);
+	var thead = cre('thead',table);
+	var tr = cre('tr',thead);
+	table.border = '1';
+	for(var i = 0;i < heads.length; i++) {
+		var th = cre('th',tr);
+		th.innerText = heads[i];
+	}
+	var tbody = cre('tbody',table);
+	var k,td;
+	btn.onclick = function () {
+		var tr = cre('tr',tbody);
+		for(var i = 0;i < arr.length;i++) {
+			var td = cre('td',tr);
+			td.innerText = arr[i];
+		}
+		var cor = tbody.children;
+		for(var i = 0;i < cor.lenth;i++) {
+		if (i % 2 ===0) {
+			cor[i].style.backgroundColor = 'red';
+		}else{
+			cor[i].style.backgroundColor = 'pink';
+		}
+		}
+	
+	
+	}
+	</script>
+</body>
+</html>
